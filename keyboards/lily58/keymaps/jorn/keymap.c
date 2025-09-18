@@ -28,12 +28,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QWERTY
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
-| ENT  | BSPC |  DEL |  SPC | SHFT | CTRL |                    |  F2  |  F3  |  F4  |  F5  |  F10 |  F11 |
+| ENT  | BSPC |  DEL |  SPC | SHFT | PSCN |                    |  F2  |  F3  |  F4  |  F5  |  F10 |  F11 |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | `    |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  [   |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | Tab  |   A  |   S  |   D  |   F  |   G  |───────┐    ┌───────|   H  |   J  |   K  |   L  | SPC  | ENT  |
-|──────+──────+──────+──────+──────+──────|  PSCN |    |       |──────+──────+──────+──────+──────+──────|
+|──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 | ESC  |   Z  |   X  |   C  |   V  |   B  |───────|    |───────|   N  |   M  |   ─  |   =  |   '  |  ]   |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
@@ -42,10 +42,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QWERTY] = LAYOUT(
-  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_LCTL,                           KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,   
+  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                           KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,   
   KC_GRV,      KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,                              KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       K_BRO,   
   KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                              KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,   	 KC_ENT,   
-  KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    KC_PSCR,      XXXXXXX,     KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,   
+  KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    KC_LCTL,      XXXXXXX,     KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,   
                     		    	KC_LALT,   MO_NUM,    MO_DWN,     MO_VI,                      KC_LCTL,   KC_LSFT,    KC_RGUI,     KC_DEL
 ),
 
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |      |      |      |      |      | C-/  |                    | BSPC | C-DOT| A-DOT| DEL  | C-Y  |      |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | A─TAB|      |  ALT | SHFT | CTRL | VI++ |───────┐    ┌───────| Left | Down |  Up  | Right| SPC  | ENT  |
-|──────+──────+──────+──────+──────+──────|  PSCN |    |       |──────+──────+──────+──────+──────+──────|
+|──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |  C-Z | C-X  | C-C  | C-V  | A-V  |───────|    |───────| A-V  | C-V  | C-C  | C-X  | C-Z  |      |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |      |  1   |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  {   |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 |   |  |   /  |   .  |   ,  |   :  |   ;  |───────┐    ┌───────|   *  |   #  |   ?  |   !  |  SPC | ENT  |
-|──────+──────+──────+──────+──────+──────|  PSCN |    |       |──────+──────+──────+──────+──────+──────|
+|──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |   \  |      |   ^  |   @  |   <  |───────|    |───────|   >  |   $  |   %  |   &  |      |   }  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
@@ -110,8 +110,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 |      |      |      |      |      |      |                    | BSPC |   7  |   8  |   9  |   *  |   /  |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-|      |      |      |      |      |      |───────┐    ┌───────|   .  |   4  |   5  |   6  |   +  |   =  |
-|──────+──────+──────+──────+──────+──────|  PSCN |    |       |──────+──────+──────+──────+──────+──────|
+|      |      | Left | Alt  | TAB  |      |───────┐    ┌───────|   .  |   4  |   5  |   6  |   +  |   =  |
+|──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |      |      |      |      |      |───────|    |───────|   0  |   1  |   2  |   3  |   ─  |   ,  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NUM] = LAYOUT(
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   S(KC_COMM), S(KC_DOT),  S(KC_4),  S(KC_5), S(KC_7),   S(KC_6),
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_BSPC,    KC_7,       KC_8,     KC_9,    S(KC_8),   KC_SLSH,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_DOT,     KC_4,       KC_5,     KC_6,    S(KC_EQL), KC_EQL,
+  XXXXXXX, XXXXXXX, KC_LEFT, KC_LALT, KC_TAB,  XXXXXXX,                   KC_DOT,     KC_4,       KC_5,     KC_6,    S(KC_EQL), KC_EQL,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_0,       KC_1,       KC_2, 	  KC_3,    KC_MINS,   KC_COMM,
                         _______, _______, _______, _______,            _______,  _______, _______, _______
   ),
