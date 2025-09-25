@@ -53,11 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 |      |      |      |      |      |      |                    |      |      |      |      |      |      |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-|      |      |      |      |      | C-/  |                    | BSPC | C-DOT| A-DOT| DEL  | C-Y  |      |
+|      |      | Left | Alt  | TAB  | C-/  |                    | BSPC | C-DOT| A-DOT| DEL  | C-P  | C-Y  |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | A─TAB|      |  ALT | SHFT | CTRL | VI++ |───────┐    ┌───────| Left | Down |  Up  | Right| SPC  | ENT  |
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
-|      |  C-Z | C-X  | C-C  | C-V  | A-V  |───────|    |───────| A-V  | C-V  | C-C  | C-X  | C-Z  |      |
+| C-A  |  C-Z | C-X  | C-C  | C-V  | A-V  |───────|    |───────| A-V  | C-V  | C-C  | C-X  | C-Z  | C-A  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
                   |      |      |      |/       /         \      \ |      |      |      |
@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_VI] = LAYOUT(
   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                        XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,    XXXXXXX,   
-  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    C(KC_SLSH),                     KC_BSPC,    C(KC_DOT),  A(KC_DOT),   KC_DEL,     C(KC_Y),    XXXXXXX,   
+  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     C(KC_SLSH),                     KC_BSPC,    C(KC_DOT),  A(KC_DOT),   KC_DEL,     C(KC_P),    C(KC_Y),   
   A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                  	    KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,   
-  XXXXXXX,	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    XXXXXXX, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    XXXXXXX,   
+  C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    XXXXXXX, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),   
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
