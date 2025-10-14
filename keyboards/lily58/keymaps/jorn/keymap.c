@@ -9,7 +9,7 @@ enum layer_number {
   _ADJUST,
 };
 
-// custom keys 
+// custom keys
 enum my_keycodes {
 	K_BRO = SAFE_RANGE,
 	K_BRC
@@ -36,17 +36,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 | ESC  |   Z  |   X  |   C  |   V  |   B  |───────|    |───────|   N  |   M  |   ─  |   =  |   '  |  ]   |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
+                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
 
  [_QWERTY] = LAYOUT(
-  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                           KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,   
-  KC_GRV,      KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,                              KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       K_BRO,   
-  KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                              KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,   	 KC_ENT,   
-  KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    KC_LCTL,      XXXXXXX,     KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,   
-                    		    	KC_LALT,   MO_NUM,    MO_DWN,     MO_VI,                      KC_LCTL,   KC_LSFT,    KC_RGUI,     KC_DEL
+  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                            KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,
+  KC_GRV,      KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,                               KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       K_BRO,
+  KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                               KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,   	 KC_ENT,
+  KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    KC_LCTL,      XXXXXXX,     KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,
+                    		    	KC_LALT,   MO_NUM,    MO_DWN,     MO_VI,                    KC_LCTL,   KC_LSFT,    KC_LALT,     KC_RGUI
 ),
 
 /* VI
@@ -59,24 +59,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 | C-A  |  C-Z | C-X  | C-C  | C-V  | A-V  |───────|    |───────| A-V  | C-V  | C-C  | C-X  | C-Z  | C-A  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
+                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
 
 [_VI] = LAYOUT(
-  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                        XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,    XXXXXXX,   
-  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     C(KC_SLSH),                     KC_BSPC,    C(KC_DOT),  A(KC_DOT),   KC_DEL,     C(KC_P),    C(KC_Y),   
-  A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                  	    KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,   
-  C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    XXXXXXX, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),   
+  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                        XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,    XXXXXXX,
+  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     C(KC_SLSH),                     KC_BSPC,    C(KC_DOT),  A(KC_DOT),   KC_DEL,     C(KC_P),    C(KC_Y),
+  A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                  	    KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,
+  C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    XXXXXXX, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
 [_VI_STRONG] = LAYOUT(
-  _______,    _______,    _______,    _______,    _______,    _______,                       _______,    _______,    _______,    _______,    _______,    _______,   
-  _______,    _______,    _______,    _______,    _______,    _______,                       _______,    _______,    _______,    _______,    _______,    _______,   
-  _______,    _______,    _______,    _______,    _______,    _______,                       KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,    _______,   
-  _______,	  _______,    _______,    _______,    _______,    _______,  _______,    _______, _______,    _______,    _______,    _______,    _______,    _______,   
+  _______,    _______,    _______,    _______,    _______,    _______,                       _______,    _______,    _______,    _______,    _______,    _______,
+  _______,    _______,    _______,    _______,    _______,    _______,                       _______,    _______,    _______,    _______,    _______,    _______,
+  _______,    _______,    _______,    _______,    _______,    _______,                       KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,    _______,
+  _______,	  _______,    _______,    _______,    _______,    _______,  _______,    _______, _______,    _______,    _______,    _______,    _______,    _______,
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
@@ -90,21 +90,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |   \  |      |   ^  |   @  |   <  |───────|    |───────|   >  |   $  |   %  |   &  |      |   }  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
+                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
 
 [_DOWN] = LAYOUT(
-  KC_F12,      KC_F1,     KC_F2,      KC_F3,	    KC_F4,      KC_F5,                           KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,   
-  XXXXXXX,     KC_1,      KC_2,		    KC_3,   	  KC_4,       KC_5,                            KC_6,     	 KC_7,       KC_8,       KC_9,  	 KC_0,     	 S(KC_LBRC),   
-  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 S(KC_8),  	 S(KC_3),  	 S(KC_SLSH), S(KC_1),  _______,  	 _______,   
-  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	XXXXXXX, S(KC_DOT),  S(KC_4),  	 S(KC_5),    S(KC_7),  XXXXXXX, 	 S(KC_RBRC),   
+  KC_F12,      KC_F1,     KC_F2,      KC_F3,	    KC_F4,      KC_F5,                           KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,
+  XXXXXXX,     KC_1,      KC_2,		    KC_3,   	  KC_4,       KC_5,                            KC_6,     	 KC_7,       KC_8,       KC_9,  	 KC_0,     	 S(KC_LBRC),
+  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 S(KC_8),  	 S(KC_3),  	 S(KC_SLSH), S(KC_1),  _______,  	 _______,
+  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	XXXXXXX, S(KC_DOT),  S(KC_4),  	 S(KC_5),    S(KC_7),  XXXXXXX, 	 S(KC_RBRC),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
 /* NUM
- 
+
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 |      |      |      |      |      |      |                    |   <  |   >  |   $  |   %  |   &  |   ^  |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |      |      |      |      |      |───────|    |───────|   0  |   1  |   2  |   3  |   ─  |   ,  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | RGU  |  DEL |
+                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
@@ -203,7 +203,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				bro_registered = true;
 				if (mod_state & MOD_MASK_SHIFT) {
 					// del_mods(MOD_MASK_SHIFT);
-					bro_keycode = KC_9;	
+					bro_keycode = KC_9;
 				} else {
 					// set_mods(MOD_MASK_SHIFT);
 					bro_keycode = KC_LBRC;
@@ -230,7 +230,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				brc_registered = true;
 				if (mod_state & MOD_MASK_SHIFT) {
 					// del_mods(MOD_MASK_SHIFT);
-					brc_keycode = KC_0;	
+					brc_keycode = KC_0;
 				} else {
 					// set_mods(MOD_MASK_SHIFT);
 					brc_keycode = KC_RBRC;
