@@ -2,9 +2,12 @@
 
 enum layer_number {
   _QWERTY = 0,
+  _QWERTY_L,
+  _QWERTY_R,
   _VI,
   _VI_STRONG,
-  _DOWN,
+  _DOWN_L,
+  _DOWN_R,
   _NUM,
   _ADJUST,
 };
@@ -17,7 +20,10 @@ enum my_keycodes {
 uint8_t mod_state;
 
 
-#define MO_DWN  MO(_DOWN)
+#define MO_QYL  MO(_QWERTY_L)
+#define MO_QYR  MO(_QWERTY_R)
+#define MO_DNL  MO(_DOWN_L)
+#define MO_DNR  MO(_DOWN_R)
 #define MO_NUM  MO(_NUM)
 #define MO_VI   MO(_VI)
 #define MO_VISG MO(_VI_STRONG)
@@ -32,11 +38,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | `    |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  [   |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-| Tab  |   A  |   S  |   D  |   F  |   G  |───────┐    ┌───────|   H  |   J  |   K  |   L  | SPC  | ENT  |
+| Tab  |g  A  |a  S  |s  D  |c  F  |   G  |───────┐    ┌───────|   H  |c  J  |s  K  |a  L  |g SPC | ENT  |
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 | ESC  |   Z  |   X  |   C  |   V  |   B  |───────|    |───────|   N  |   M  |   ─  |   =  |   '  |  ]   |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  |  GUI |
+                  |  Alt |  QTY |  DWN | /   VI  /       \ SHFT \  |  DWN |  QTY |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
@@ -44,31 +50,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QWERTY] = LAYOUT(
   KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                            KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,
   KC_GRV,      KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,                               KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       K_BRO,
-  KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                               KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,   	 KC_ENT,
+  KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                               KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,     KC_ENT,
   KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    KC_LCTL,      XXXXXXX,     KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,
-                    		    	KC_LALT,   MO_NUM,    MO_DWN,     MO_VI,                    KC_LCTL,   KC_LSFT,    KC_LALT,     KC_RGUI
+                    		    	KC_LALT,   MO_QYR,    MO_DNR,     MO_VI,                    KC_LSFT,   MO_DNL,    MO_QYL,     KC_RGUI
+),
+
+ [_QWERTY_L] = LAYOUT(
+  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                            KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,
+  KC_GRV,      KC_Q,      KC_W,       KC_E,       KC_R,       KC_T,                               XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
+  KC_TAB,      KC_A,      KC_S,       KC_D,       KC_F,       KC_G,                               XXXXXXX,    KC_LCTL,    KC_LSFT,    KC_LALT,    KC_RGUI,    XXXXXXX,
+  KC_ESC,      KC_Z,      KC_X,       KC_C,       KC_V,       KC_B,    _______,      _______,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
+               		    	_______,   _______,    _______,     _______,                    _______,   _______,    _______,     _______
+),
+
+ [_QWERTY_R] = LAYOUT(
+  KC_ENT,      KC_BSPC,   KC_DEL,     KC_SPC,     KC_LSFT,    KC_PSCR,                            KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F10,     KC_F11,
+  XXXXXXX,     XXXXXXX,   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                            KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       K_BRO,
+  XXXXXXX,     KC_RGUI,   KC_LALT,    KC_LSFT,    KC_LCTL,    XXXXXXX,                            KC_H,       KC_J,       KC_K,       KC_L,       KC_SPC,     KC_ENT,
+  XXXXXXX,     XXXXXXX,   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    _______,      _______,  KC_N,       KC_M,       KC_MINS,    KC_EQL,     KC_QUOT,    K_BRC,
+                    		    	_______,   _______,    _______,     _______,                    _______,   _______,    _______,     _______
 ),
 
 /* VI
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 |      |      |      |      |      |      |                    |      |      |      |      |      |      |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-|      |      | Left | Alt  | TAB  | C-/  |                    | BSPC | C-DOT| A-DOT| DEL  | C-P  | C-Y  |
+|      |      | Left | Alt  | TAB  | NUM  |                    | BSPC | C-DOT| C-/  | DEL  | C-SPC| C-Y  |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | A─TAB|      |  ALT | SHFT | CTRL | VI++ |───────┐    ┌───────| Left | Down |  Up  | Right| SPC  | ENT  |
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 | C-A  |  C-Z | C-X  | C-C  | C-V  | A-V  |───────|    |───────| A-V  | C-V  | C-C  | C-X  | C-Z  | C-A  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
+                  |  Alt |  QTY |  DWN | /   VI  /       \ SHFT \  |  DWN |  QTY |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
 
 [_VI] = LAYOUT(
   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                        XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,    XXXXXXX,
-  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     C(KC_SLSH),                     KC_BSPC,    C(KC_DOT),  A(KC_DOT),   KC_DEL,     C(KC_P),    C(KC_Y),
-  A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                  	    KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,
-  C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    XXXXXXX, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),
+  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     MO_NUM,                         KC_BSPC,    C(KC_DOT),  C(KC_SLSH),  KC_DEL,     C(KC_SPC),    C(KC_Y),
+  A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                 	      KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,
+  C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    _______, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
@@ -90,21 +112,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |   \  |      |   ^  |   @  |   <  |───────|    |───────|   >  |   $  |   %  |   &  |      |   }  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
+                  |  Alt |  QTY |  DWN | /   VI  /       \ SHFT \  |  DWN |  QTY |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
 
-[_DOWN] = LAYOUT(
-  KC_F12,      KC_F1,     KC_F2,      KC_F3,	    KC_F4,      KC_F5,                           KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,
-  XXXXXXX,     KC_1,      KC_2,		    KC_3,   	  KC_4,       KC_5,                            KC_6,     	 KC_7,       KC_8,       KC_9,  	 KC_0,     	 S(KC_LBRC),
-  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 S(KC_8),  	 S(KC_3),  	 S(KC_SLSH), S(KC_1),  _______,  	 _______,
-  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	XXXXXXX, S(KC_DOT),  S(KC_4),  	 S(KC_5),    S(KC_7),  XXXXXXX, 	 S(KC_RBRC),
+[_DOWN_L] = LAYOUT(
+  KC_F12,      KC_F1,     KC_F2,      KC_F3,	  KC_F4,      KC_F5,                             KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,
+  XXXXXXX,     KC_1,      KC_2,		  KC_3,   	  KC_4,       KC_5,                              KC_6,     	 KC_7,       KC_8,       KC_9,     KC_0,       S(KC_LBRC),
+  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 XXXXXXX,    KC_LCTL,    KC_LSFT,    KC_LALT,    KC_RGUI,    XXXXXXX,
+  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	_______, XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
+                             _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
+),
+
+[_DOWN_R] = LAYOUT(
+  KC_F12,      KC_F1,     KC_F2,      KC_F3,	  KC_F4,      KC_F5,                             KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,
+  XXXXXXX,     KC_1,      KC_2,		  KC_3,   	  KC_4,       KC_5,                              KC_6,    	 KC_7,       KC_8,       KC_9,     KC_0,       S(KC_LBRC),
+  XXXXXXX,     KC_RGUI,   KC_LALT,    KC_LSFT,    KC_LCTL,    XXXXXXX,                      	 S(KC_8),  	 S(KC_3),  	 S(KC_SLSH), S(KC_1),  _______,    _______,
+  XXXXXXX,     XXXXXXX,   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, _______,     	_______, S(KC_DOT),  S(KC_4),  	 S(KC_5),    S(KC_7),  XXXXXXX,    S(KC_RBRC),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
 /* NUM
-
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 |      |      |      |      |      |      |                    |   <  |   >  |   $  |   %  |   &  |   ^  |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
@@ -114,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
 |      |      |      |      |      |      |───────|    |───────|   0  |   1  |   2  |   3  |   ─  |   ,  |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
-                  |  Alt | NUM  |  DWN | /   VI  /       \ CTRL \  | SHFT | ALT  | GUI  |
+                  |  Alt |  QTY |  DWN | /   VI  /       \ SHFT \  |  DWN |  QTY |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
                   └────────────────────────────'           '──────'┘────────────────────┘
  */
@@ -138,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _VI, _DOWN, _ADJUST);
-}
+// layer_state_t layer_state_set_user(layer_state_t state) {
+  // return update_tri_layer_state(state, _VI, _DOWN, _ADJUST);
+// }
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
 #ifdef OLED_ENABLE
