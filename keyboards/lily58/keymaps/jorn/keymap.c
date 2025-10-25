@@ -168,23 +168,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // layer_state_t layer_state_set_user(layer_state_t state) {
-  // return update_tri_layer_state(state, _VI, _DOWN, _ADJUST);
+// return update_tri_layer_state(state, _VI, _DOWN, _ADJUST);
 // }
 
-//SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
+// SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
 #ifdef OLED_ENABLE
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (!is_keyboard_master())
-  // return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-    return rotation;  // flips the display 180 degrees if offhand
-  return rotation;
+    if (!is_keyboard_master())
+        // return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+        return rotation; // flips the display 180 degrees if offhand
+    return rotation;
 }
 
 // When you add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
 const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
+void        set_keylog(uint16_t keycode, keyrecord_t *record);
 const char *read_keylog(void);
 const char *read_keylogs(void);
 
@@ -194,88 +194,88 @@ const char *read_keylogs(void);
 // const char *read_timelog(void);
 
 bool oled_task_user(void) {
-  if (is_keyboard_master()) {
-    // If you want to change the display of OLED, you need to change here
-    oled_write_ln(read_layer_state(), false);
-    oled_write_ln(read_keylog(), false);
-    oled_write_ln(read_keylogs(), false);
-    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    //oled_write_ln(read_host_led_state(), false);
-    //oled_write_ln(read_timelog(), false);
-  } else {
-    oled_write_ln(read_layer_state(), false);
-    // oled_write(read_logo(), false);
-  }
+    if (is_keyboard_master()) {
+        // If you want to change the display of OLED, you need to change here
+        oled_write_ln(read_layer_state(), false);
+        oled_write_ln(read_keylog(), false);
+        oled_write_ln(read_keylogs(), false);
+        // oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
+        // oled_write_ln(read_host_led_state(), false);
+        // oled_write_ln(read_timelog(), false);
+    } else {
+        oled_write_ln(read_layer_state(), false);
+        // oled_write(read_logo(), false);
+    }
     return false;
 }
 #endif // OLED_ENABLE
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  // some oled stuff
-  if (record->event.pressed) {
+    // some oled stuff
+    if (record->event.pressed) {
 #ifdef OLED_ENABLE
-    set_keylog(keycode, record);
+        set_keylog(keycode, record);
 #endif
-    // set_timelog();
-  }
+        // set_timelog();
+    }
 
-	mod_state = get_mods();
-  switch (keycode) {
-		case K_BRO:{
-			static bool bro_registered;
-			static uint16_t bro_keycode;
-			if (record->event.pressed) {
-				// Do something when pressed
-				// without shift we sende `(`
-				// with shift we send `[`
-				// `{` we handle in down layer
-				bro_registered = true;
-				if (mod_state & MOD_MASK_SHIFT) {
-					// del_mods(MOD_MASK_SHIFT);
-					bro_keycode = KC_9;
-				} else {
-					// set_mods(MOD_MASK_SHIFT);
-					bro_keycode = KC_LBRC;
-				}
-				register_code(bro_keycode);
-				set_mods(mod_state);
-			} else {
-			// Do something else when release
-				if (bro_registered) {
-					unregister_code(bro_keycode);
-					bro_registered = false;
-				}
-			}
-			return false; // Skip all further processing of this key
-		}
-		case K_BRC:{
-			static bool brc_registered;
-			static uint16_t brc_keycode;
-			if (record->event.pressed) {
-				// Do something when pressed
-				// without shift we sende `)`
-				// with shift we send `]`
-				// `}` we handle in down layer
-				brc_registered = true;
-				if (mod_state & MOD_MASK_SHIFT) {
-					// del_mods(MOD_MASK_SHIFT);
-					brc_keycode = KC_0;
-				} else {
-					// set_mods(MOD_MASK_SHIFT);
-					brc_keycode = KC_RBRC;
-				}
-				register_code(brc_keycode);
-				set_mods(mod_state);
-			} else {
-			// Do something else when release
-				if (brc_registered) {
-					unregister_code(brc_keycode);
-					brc_registered = false;
-				}
-			}
-			return false; // Skip all further processing of this key
-		}
-		default:
-			return true; // Process all other keycodes normally
-	}
+    mod_state = get_mods();
+    switch (keycode) {
+        case K_BRO: {
+            static bool     bro_registered;
+            static uint16_t bro_keycode;
+            if (record->event.pressed) {
+                // Do something when pressed
+                // without shift we sende `(`
+                // with shift we send `[`
+                // `{` we handle in down layer
+                bro_registered = true;
+                if (mod_state & MOD_MASK_SHIFT) {
+                    // del_mods(MOD_MASK_SHIFT);
+                    bro_keycode = KC_9;
+                } else {
+                    // set_mods(MOD_MASK_SHIFT);
+                    bro_keycode = KC_LBRC;
+                }
+                register_code(bro_keycode);
+                set_mods(mod_state);
+            } else {
+                // Do something else when release
+                if (bro_registered) {
+                    unregister_code(bro_keycode);
+                    bro_registered = false;
+                }
+            }
+            return false; // Skip all further processing of this key
+        }
+        case K_BRC: {
+            static bool     brc_registered;
+            static uint16_t brc_keycode;
+            if (record->event.pressed) {
+                // Do something when pressed
+                // without shift we sende `)`
+                // with shift we send `]`
+                // `}` we handle in down layer
+                brc_registered = true;
+                if (mod_state & MOD_MASK_SHIFT) {
+                    // del_mods(MOD_MASK_SHIFT);
+                    brc_keycode = KC_0;
+                } else {
+                    // set_mods(MOD_MASK_SHIFT);
+                    brc_keycode = KC_RBRC;
+                }
+                register_code(brc_keycode);
+                set_mods(mod_state);
+            } else {
+                // Do something else when release
+                if (brc_registered) {
+                    unregister_code(brc_keycode);
+                    brc_registered = false;
+                }
+            }
+            return false; // Skip all further processing of this key
+        }
+        default:
+            return true; // Process all other keycodes normally
+    }
 }
