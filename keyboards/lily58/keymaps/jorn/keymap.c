@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 |      |      |      |      |      |      |                    |      |      |      |      |      |      |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-|      |      | Left | Alt  | TAB  | NUM  |                    | BSPC | C-DOT| C-/  | DEL  | C-SPC| C-Y  |
+|      |      | Left | Alt  | TAB  | NUM  |                    | BSPC | C-DOT| C-/  | DEL  | C-P  | C-SPC|
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | A─TAB|      |  ALT | SHFT | CTRL | VI++ |───────┐    ┌───────| Left | Down |  Up  | Right| SPC  | ENT  |
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_VI] = LAYOUT(
   XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                        XXXXXXX,    XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,    XXXXXXX,
-  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     MO_NUM,                         KC_BSPC,    C(KC_DOT),  C(KC_SLSH),  KC_DEL,     C(KC_SPC),    C(KC_Y),
+  XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_LALT,    KC_TAB,     MO_NUM,                         KC_BSPC,    C(KC_DOT),  C(KC_SLSH),  KC_DEL,     C(KC_P),    C(KC_SPC),
   A(KC_TAB),  XXXXXXX,    KC_LALT,    KC_LSFT,    KC_LCTL,    MO_VISG,                 	      KC_LEFT,    KC_DOWN,    KC_UP,       KC_RGHT,    _______,    _______,
   C(KC_A),	  C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    A(KC_V),   _______,    _______, A(KC_V),    C(KC_V),    C(KC_C),     C(KC_X),    C(KC_Z),    C(KC_A),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
