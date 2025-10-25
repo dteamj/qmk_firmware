@@ -36,11 +36,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ┌─────────────────────────────────────────┐                    ┌─────────────────────────────────────────┐
 | ENT  | BSPC |  DEL |  SPC | SHFT | PSCN |                    |  F2  |  F3  |  F4  |  F5  |  F10 |  F11 |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
-| `    |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  [   |
+| `    |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  (   |
 |──────+──────+──────+──────+──────+──────|                    |──────+──────+──────+──────+──────+──────|
 | Tab  |g  A  |a  S  |s  D  |c  F  |   G  |───────┐    ┌───────|   H  |c  J  |s  K  |a  L  |g SPC | ENT  |
 |──────+──────+──────+──────+──────+──────|  CTRL |    |       |──────+──────+──────+──────+──────+──────|
-| ESC  |   Z  |   X  |   C  |   V  |   B  |───────|    |───────|   N  |   M  |   ─  |   =  |   '  |  ]   |
+| ESC  |   Z  |   X  |   C  |   V  |   B  |───────|    |───────|   N  |   M  |   ─  |   =  |   '  |  )   |
 └─────────────────────────────────────────/       /     \      \─────────────────────────────────────────┘
                   |  Alt |  QTY |  DWN | /   VI  /       \ SHFT \  |  DWN |  QTY |  GUI |
                   |      |      |      |/       /         \      \ |      |      |      |
@@ -120,8 +120,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_DOWN_L] = LAYOUT(
   KC_F12,      KC_F1,     KC_F2,      KC_F3,	  KC_F4,      KC_F5,                             KC_F6,      KC_F7,      KC_F8,      KC_F9,    KC_F10,     KC_F11,
   XXXXXXX,     KC_1,      KC_2,		  KC_3,   	  KC_4,       KC_5,                              KC_6,     	 KC_7,       KC_8,       KC_9,     KC_0,       S(KC_LBRC),
-  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 XXXXXXX,    KC_LCTL,    KC_LSFT,    KC_LALT,    KC_RGUI,    XXXXXXX,
-  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	_______, XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
+  S(KC_BSLS),  KC_SLSH,   KC_DOT, 	  KC_COMM, 	  S(KC_SCLN), KC_SCLN,                      	 XXXXXXX,    KC_LCTL,    KC_LSFT,    KC_LALT,  KC_RGUI,    XXXXXXX,
+  XXXXXXX,	   KC_BSLS,   XXXXXXX,	  S(KC_6),    S(KC_2),    S(KC_COMM), _______,  	_______, XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,    S(KC_RBRC),
                              _______,    _______,    _______,    _______,                 _______,     _______,    _______,    _______
 ),
 
@@ -151,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   S(KC_COMM), S(KC_DOT),  S(KC_4),  S(KC_5), S(KC_7),   S(KC_6),
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_BSPC,    KC_7,       KC_8,     KC_9,    S(KC_8),   KC_SLSH,
   XXXXXXX, XXXXXXX, KC_LEFT, KC_LALT, KC_TAB,  XXXXXXX,                   KC_DOT,     KC_4,       KC_5,     KC_6,    S(KC_EQL), KC_EQL,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_0,       KC_1,       KC_2, 	  KC_3,    KC_MINS,   KC_COMM,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_0,       KC_1,       KC_2, 	KC_3,    KC_MINS,   KC_COMM,
                         _______, _______, _______, _______,            _______,  _______, _______, _______
   ),
 
@@ -231,11 +231,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // `{` we handle in down layer
                 bro_registered = true;
                 if (mod_state & MOD_MASK_SHIFT) {
-                    // del_mods(MOD_MASK_SHIFT);
-                    bro_keycode = KC_9;
-                } else {
-                    // set_mods(MOD_MASK_SHIFT);
+                    del_mods(MOD_MASK_SHIFT);
                     bro_keycode = KC_LBRC;
+                } else {
+                    set_mods(MOD_MASK_SHIFT);
+                    bro_keycode = KC_9;
                 }
                 register_code(bro_keycode);
                 set_mods(mod_state);
@@ -258,11 +258,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // `}` we handle in down layer
                 brc_registered = true;
                 if (mod_state & MOD_MASK_SHIFT) {
-                    // del_mods(MOD_MASK_SHIFT);
-                    brc_keycode = KC_0;
-                } else {
-                    // set_mods(MOD_MASK_SHIFT);
+                    del_mods(MOD_MASK_SHIFT);
                     brc_keycode = KC_RBRC;
+                } else {
+                    set_mods(MOD_MASK_SHIFT);
+                    brc_keycode = KC_0;
                 }
                 register_code(brc_keycode);
                 set_mods(mod_state);
