@@ -1,0 +1,1 @@
+/home/jorn/Develop/keyboard/allium58/qmk_firmware/keyboards/lily58/config.h
