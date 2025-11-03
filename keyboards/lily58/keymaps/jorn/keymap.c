@@ -198,24 +198,24 @@ bool oled_task_user(void) {
     return false;
 }
 #endif // OLED_ENABLE
-bool process_custom_bracket(keyrecord_t *record, uint16_t shifted_kc, uint16_t unshifted_kc) {
-    if (record->event.pressed) {
-        if (get_mods() & MOD_MASK_SHIFT) {
-            // If shift is held, send the shifted keycode without shift
-            del_mods(MOD_MASK_SHIFT);
-            register_code(shifted_kc);
-            set_mods(get_mods()); // Restore other mods
-        } else {
-            // If shift is not held, send the unshifted keycode with shift
-            register_code16(LCTL(unshifted_kc)); // Use LCTL as a temporary modifier
-        }
-    } else {
-        // On release, unregister the keycode that was registered on press
-        unregister_code(shifted_kc);
-        unregister_code16(LCTL(unshifted_kc));
-    }
-    return false; // We've handled this keypress
-}
+// bool process_custom_bracket(keyrecord_t *record, uint16_t shifted_kc, uint16_t unshifted_kc) {
+//     if (record->event.pressed) {
+//         if (get_mods() & MOD_MASK_SHIFT) {
+//             // If shift is held, send the shifted keycode without shift
+//             del_mods(MOD_MASK_SHIFT);
+//             register_code(shifted_kc);
+//             set_mods(get_mods()); // Restore other mods
+//         } else {
+//             // If shift is not held, send the unshifted keycode with shift
+//             register_code16(LCTL(unshifted_kc)); // Use LCTL as a temporary modifier
+//         }
+//     } else {
+//         // On release, unregister the keycode that was registered on press
+//         unregister_code(shifted_kc);
+//         unregister_code16(LCTL(unshifted_kc));
+//     }
+//     return false; // We've handled this keypress
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -224,12 +224,63 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     }
 
+    mod_state = get_mods();
     switch (keycode) {
-        case K_BRO:
-            return process_custom_bracket(record, KC_LBRC, KC_9); // Shifted: [, Unshifted: (
-        case K_BRC:
-            return process_custom_bracket(record, KC_RBRC, KC_0); // Shifted: ], Unshifted: )
+        case K_BRO: {
+            static bool     bro_registered;
+            static uint16_t bro_keycode;
+            if (record->event.pressed) {
+                // Do something when pressed
+                // without shift we sende `(`
+                // with shift we send `[`
+                // `{` we handle in down layer
+                bro_registered = true;
+                if (mod_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    bro_keycode = KC_LBRC;
+                } else {
+                    set_mods(MOD_MASK_SHIFT);
+                    bro_keycode = KC_9;
+                }
+                register_code(bro_keycode);
+                set_mods(mod_state);
+            } else {
+                // Do something else when release
+                if (bro_registered) {
+                    unregister_code(bro_keycode);
+                    bro_registered = false;
+                }
+            }
+            return false; // Skip all further processing of this key
+        }
+        case K_BRC: {
+            static bool     brc_registered;
+            static uint16_t brc_keycode;
+            if (record->event.pressed) {
+                // Do something when pressed
+                // without shift we sende `)`
+                // with shift we send `]`
+                // `}` we handle in down layer
+                brc_registered = true;
+                if (mod_state & MOD_MASK_SHIFT) {
+                    del_mods(MOD_MASK_SHIFT);
+                    brc_keycode = KC_RBRC;
+                } else {
+                    set_mods(MOD_MASK_SHIFT);
+                    brc_keycode = KC_0;
+                }
+                register_code(brc_keycode);
+                set_mods(mod_state);
+            } else {
+                // Do something else when release
+                if (brc_registered) {
+                    unregister_code(brc_keycode);
+                    brc_registered = false;
+                }
+            }
+            return false; // Skip all further processing of this key
+        }
         default:
-            return true;
+            return true; // Process all other keycodes normally
     }
 }

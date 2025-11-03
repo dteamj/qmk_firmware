@@ -1,1 +1,2 @@
 25-11-01 16:24 - changing the brackets to regular (
+25-11-01 16:27 - using gemini
