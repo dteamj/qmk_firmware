@@ -23,6 +23,22 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 - some qmk <https://docs.qmk.fm/platformdev_rp2040>
 - general <https://joshajohnson.com/sea-picro/>
 
+
+
+### QMK tooling
+
+```bash
+qmk compile -kb lily58/rev1 -km jorn -e CONVERT_TO=rp2040_ce
+qmk flash  -kb lily58/rev1 -km jorn -e CONVERT_TO=rp2040_ce
+```
+
+#### Nuphy
+```bash
+qmk compile -kb nuphy/air75_v2/ansi -km via
+qmk compile -kb nuphy/air75_v2/ansi -km default
+qmk config user.keyboard=nuphy/air75_v2/ansi
+```
+
 ###  test
 @#$@$dsfsdf
 
